@@ -1,7 +1,9 @@
 import ComingSoon from '../../components/comingSoon'
 const Shop = () => {
   return (
-    <div>
+    <div style={{
+      height: '100%'
+    }}>
         <ComingSoon />
     </div>
   )

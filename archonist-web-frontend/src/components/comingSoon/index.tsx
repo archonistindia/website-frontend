@@ -6,8 +6,8 @@ const ComingSoon = () => {
       sx={{
         bgcolor: '#0d0d0d',
         color: '#fff',
-        minHeight: '100vh',
         display: 'flex',
+        height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
