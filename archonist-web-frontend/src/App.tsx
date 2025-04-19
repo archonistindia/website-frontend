@@ -1,23 +1,29 @@
-import reactLogo from './assets/logo.svg'
-import './App.css'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
+import Home from './pages/home';
+import Navbar from './components/navbar';
+import Shop from './pages/shop';
+import { Box } from '@mui/material';
 
 function App() {
   return (
-    <>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Archonist Official Site </h1>
-      <div className="card">
-        <h2>
-          Coming Soon
-        </h2>
-      </div>
-      
-    </>
-  )
+    <Router>
+      <Box
+        sx={{
+          height: "100%",
+          width: '100%',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+        }}
+      >
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+        </Routes>
+      </Box>
+    </Router>
+  );
 }
 
-export default App
+export default App;
