@@ -1,10 +1,12 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SocialLinks from '../socialLinks';
 import Logo from '../../assets/logo.svg';
 
 const menuItems = [
+  { name: 'About', path: '/about' },
   { name: 'Discography', path: '/discography' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'News', path: '/news' },
@@ -13,16 +15,12 @@ const menuItems = [
 
 const Navbar = () => {
   const [navbarSolid, setNavbarSolid] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setNavbarSolid(true);
-      } else {
-        setNavbarSolid(false);
-      }
+      setNavbarSolid(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -49,8 +47,31 @@ const Navbar = () => {
           justifyContent: 'space-between',
         }}
       >
-        {/* Left: Menu Items */}
-        <Stack direction="row" spacing={4}>
+        {/* Left: Logo */}
+        <NavLink to="/">
+          <Box sx={{ width: { xs: '120px', sm: '200px' } }}>
+            <Box
+              component="img"
+              src={Logo}
+              alt="Logo"
+              sx={{
+                width: '100%',
+                height: 'auto',
+                filter: 'invert(1)',
+              }}
+            />
+          </Box>
+        </NavLink>
+
+        {/* Desktop Menu */}
+        <Stack
+          direction="row"
+          spacing={4}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            alignItems: 'center',
+          }}
+        >
           {menuItems.map((item) => (
             <NavLink
               key={item.name}
@@ -71,30 +92,51 @@ const Navbar = () => {
           ))}
         </Stack>
 
-        {/* Center: Logo */}
-        <NavLink to="/">
-          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-            <Box sx={{ width: '200px', color: '#fff' }}>
-              <Box
-                component="img"
-                src={Logo}
-                alt="Logo"
-                sx={{
-                  mt: 2,
-                  width: '100%',
-                  height: 'auto',
-                  filter: 'invert(1)',
-                }}
-              />
-            </Box>
+        {/* Right: Social Links / Mobile Menu */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            <SocialLinks />
           </Box>
-        </NavLink>
 
-        {/* Right: Social Links */}
-        <Box>
-          <SocialLinks />
+          {/* Mobile Menu Button */}
+          <IconButton
+            sx={{ display: { xs: 'block', md: 'none' }, color: 'white', ml: 1 }}
+            onClick={() => setDrawerOpen(true)}
+          >
+            <MenuIcon />
+          </IconButton>
         </Box>
       </Box>
+
+      {/* Mobile Drawer */}
+      <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <Box sx={{ width: 250, backgroundColor: '#1f1f1f', height: '100%', p: 2 }}>
+          <List>
+            {menuItems.map((item) => (
+              <ListItem
+                key={item.name}
+                button
+                component={NavLink}
+                to={item.path}
+                onClick={() => setDrawerOpen(false)}
+              >
+                <ListItemText
+                  primary={item.name}
+                  primaryTypographyProps={{
+                    sx: {
+                      color: 'white',
+                      textTransform: 'uppercase',
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                      letterSpacing: '1px',
+                    },
+                  }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </Box>
   );
 };

@@ -3,6 +3,10 @@ import {
   useTheme
 } from '@mui/material';
 import HeroSection from '../../components/heroSection';
+import SpotifyEmbed from '../../components/spotifyEmbed';
+import AlbumArtVinyl from '../../components/albumArtVinyl';
+import yourCoverImage from '../../assets/insanity.jpg';
+import DiscographySection from '../../sections/discogrpahySection';
 
 const Home = () => {
   const theme = useTheme();
@@ -19,6 +23,9 @@ const Home = () => {
       }}
     >
       <HeroSection />
+      <SpotifyEmbed />
+      <DiscographySection />
+
     </Container>
   );
 };

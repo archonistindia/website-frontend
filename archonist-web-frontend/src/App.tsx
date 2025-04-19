@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Navbar from './components/navbar';
 import Shop from './pages/shop';
 import { Box } from '@mui/material';
+import About from './pages/about';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </Box>
       </Box>

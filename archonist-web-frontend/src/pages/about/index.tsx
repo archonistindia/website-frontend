@@ -1,0 +1,91 @@
+import { Box, Container, Typography, Divider, Stack, Grid } from '@mui/material';
+
+const About = () => {
+  return (
+    <Box
+      sx={{
+        minHeight: '100vh',
+        bgcolor: '#0d0d0d',
+        color: '#fff',
+        py: 8,
+      }}
+    >
+        <Box sx={{
+            padding: '100px 0px 50px 0px'
+        }}>
+
+            <Typography variant="h2" fontWeight="bold" gutterBottom align="center">
+            About Archonist
+            </Typography>
+        </Box>
+      <Container maxWidth="lg">
+        
+
+        <Typography variant="h6" color="gray" align="center" gutterBottom>
+          Dynamic Hard Rock from Jaipur & New Delhi, India
+        </Typography>
+
+        <Divider sx={{ my: 4, bgcolor: 'gray' }} />
+
+        <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+          <strong>Archonist</strong> is a dynamic Hard Rock band born out of the grit of Jaipur and New Delhi. With an
+          unrelenting drive to shake the system and elevate consciousness, Archonist crafts a sonic experience that's
+          both explosive and introspective. Combining heavy riffs, soaring vocals, and thought-provoking lyrics, our music
+          doesn't just entertain—it awakens.
+        </Typography>
+
+        <Box mt={6}>
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Musical Style & Sound
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: '1rem', lineHeight: 1.8 }}>
+            Our sound is an electrifying blend of raw energy, melodic hooks, and intricate guitar work. Inspired by
+            classic rock, heavy metal, and alternative rock, we create tracks that balance aggression with emotion—
+            offering both headbanging riffs and soul-hitting melodies.
+          </Typography>
+        </Box>
+
+        <Box mt={6}>
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Lyrical Themes & Message
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: '1rem', lineHeight: 1.8 }}>
+            Archonist explores themes like motivation, mental health, greed, social isolation, and the toxic grip of
+            consumerism. Each song is a narrative—raising questions, breaking silence, and empowering listeners to
+            question the system and ignite change. Our message is clear: face reality, rise above, and reclaim your mind.
+          </Typography>
+        </Box>
+
+        <Box mt={6}>
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Meet the Band
+          </Typography>
+          <Grid container spacing={2} mt={2}>
+            {[
+              ['Aken (Angoam)', 'Vocals'],
+              ['Gunjan', 'Guitar & Production'],
+              ['Kalpesh', 'Drums'],
+              ['Dushyant', 'Guitar'],
+              ['Shashwat', 'Guitar'],
+              ['Ravneet', 'Bass'],
+            ].map(([name, role]) => (
+              <Grid item xs={12} sm={6} key={name}>
+                <Typography variant="subtitle1">
+                  <strong>{name}</strong> — {role}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        <Stack direction="row" justifyContent="center" mt={6}>
+          <Typography variant="caption" color="gray" fontStyle="italic">
+            “Our music is not just noise—it’s awareness in disguise.”
+          </Typography>
+        </Stack>
+      </Container>
+    </Box>
+  );
+};
+
+export default About;

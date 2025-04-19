@@ -1,0 +1,98 @@
+.album-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .cover-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .album-cover-container {
+    position: relative; /* Add this */
+    z-index: 2; /* Keep this higher than vinyl */
+  }
+  
+  .vinyl-overlap {
+    position: absolute;
+    top: 50%;
+    right: -140px;
+    transform: translateY(-50%);
+    width: 280px;
+    height: 280px;
+    z-index: 1; /* Lower than album cover but higher than wrapper */
+  }
+  .album-cover {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    z-index: 8;
+  }
+  
+  .vinyl-disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #222 0%, #000 60%, #111 100%);
+    position: relative;
+    transition: transform 10.6s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+  }
+  
+  .vinyl-disc::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: repeating-radial-gradient(
+      circle,
+      transparent,
+      transparent 4px,
+      rgba(255, 255, 255, 0.05) 5px
+    );
+  }
+  
+  .vinyl-center-hole {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .vinyl-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
+    transform: rotate(25deg) translate(-50%, -50%);
+    pointer-events: none;
+    animation: glareMove 2.5s linear infinite;
+    opacity: 0.2;
+  }
+  
+  @keyframes glareMove {
+    0% {
+      transform: rotate(25deg) translate(-120%, -50%);
+    }
+    100% {
+      transform: rotate(25deg) translate(120%, -50%);
+    }
+  }
+  
+  .vinyl-disc:hover {
+    transform: rotate(360deg);
+  }
+  
