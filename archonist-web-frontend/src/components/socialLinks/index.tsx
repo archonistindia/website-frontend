@@ -1,13 +1,10 @@
-import React from 'react';
 import { Box, IconButton, Stack, Tooltip } from '@mui/material';
 import {
   Facebook,
   Instagram,
-  Twitter,
   Apple,
 } from '@mui/icons-material';
-import MusicNoteIcon from '@mui/icons-material/MusicNote'; // Spotify
-import { FaDiscord, FaAmazon, FaSpotify } from 'react-icons/fa'; // Discord icon
+import { FaDiscord, FaAmazon, FaSpotify } from 'react-icons/fa';
 
 const SocialLinks = () => {
   return (

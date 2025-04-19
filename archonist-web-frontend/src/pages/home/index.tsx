@@ -1,9 +1,5 @@
 import {
   Box,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
   useTheme
 } from '@mui/material';
 import HeroSection from '../../components/heroSection';
@@ -48,7 +44,7 @@ const Home = () => {
         </Box> */}
 
         {/* About and Sound */}
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Card elevation={3} sx={{ bgcolor: '#1a1a1a', color: '#fff', height: '100%' }}>
               <CardContent>
@@ -73,7 +69,7 @@ const Home = () => {
               </CardContent>
             </Card>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Box>
     </Box>
   );
