@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const artistId = ; // Get from Spotify artist profile URL
+const artistId = 'YOUR_ARTIST_ID'; // Get from Spotify artist profile URL
 
 export const useSpotifyTracks = (accessToken: string) => {
-  const [tracks, setTracks] = useState([]);
+  const [tracks, setTracks] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchAlbums = async () => {

@@ -1,7 +1,7 @@
 import AlbumArtVinyl from '../../components/albumArtVinyl'
 import insanityCover from '../../assets/insanity.jpg';
 import highwayCover from '../../assets/highway.jpg';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import SectionTitle from '../../components/sectionTitle';
 
 const DiscographySection = () => {

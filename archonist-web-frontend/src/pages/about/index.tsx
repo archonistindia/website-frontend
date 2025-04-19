@@ -1,4 +1,6 @@
-import { Box, Container, Typography, Divider, Stack, Grid } from '@mui/material';
+import { Box, Container, Typography, Divider, Stack} from '@mui/material';
+import Grid from '@mui/material/Grid';
+
 
 const About = () => {
   return (
@@ -69,10 +71,10 @@ const About = () => {
               ['Shashwat', 'Guitar'],
               ['Ravneet', 'Bass'],
             ].map(([name, role]) => (
-              <Grid item xs={12} sm={6} key={name}>
-                <Typography variant="subtitle1">
-                  <strong>{name}</strong> — {role}
-                </Typography>
+              <Grid size={12} key={name} >
+                    <Typography variant="subtitle1">
+                    <strong>{name}</strong> — {role}
+                    </Typography>
               </Grid>
             ))}
           </Grid>

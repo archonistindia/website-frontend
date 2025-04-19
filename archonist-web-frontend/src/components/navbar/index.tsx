@@ -115,7 +115,7 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <ListItem
                 key={item.name}
-                button
+                // button
                 component={NavLink}
                 to={item.path}
                 onClick={() => setDrawerOpen(false)}
