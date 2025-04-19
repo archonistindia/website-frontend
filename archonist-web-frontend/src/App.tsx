@@ -10,17 +10,40 @@ function App() {
     <Router>
       <Box
         sx={{
-          height: "100%",
+          height: '100vh',
           width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
           bgcolor: 'background.default',
           color: 'text.primary',
         }}
       >
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-        </Routes>
+        {/* Sticky Navbar */}
+        <Box
+          sx={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 1000,
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+          }}
+        >
+          <Navbar />
+        </Box>
+
+        {/* Main Content */}
+        <Box
+          component="main"
+          sx={{
+            flex: 1,
+            width: '100vw'
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+          </Routes>
+        </Box>
       </Box>
     </Router>
   );

@@ -1,9 +1,10 @@
 import { Box, Stack } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import SocialLinks from '../socialLinks' // Ensure this path is correct
+import { useEffect, useState } from 'react';
+import SocialLinks from '../socialLinks';
+import Logo from '../../assets/logo.svg';
 
 const menuItems = [
-  { name: 'Home', path: '/' },
   { name: 'Discography', path: '/discography' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'News', path: '/news' },
@@ -11,24 +12,45 @@ const menuItems = [
 ];
 
 const Navbar = () => {
+  const [navbarSolid, setNavbarSolid] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setNavbarSolid(true);
+      } else {
+        setNavbarSolid(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Box
       component="nav"
       sx={{
         width: '100vw',
-        backgroundColor: '#2e3131',
+        position: 'fixed',
+        top: 0,
+        zIndex: 999,
         py: 2,
-        borderBottom: '1px solid #000',
+        backgroundColor: navbarSolid ? '#2e3131' : 'transparent',
+        transition: 'background-color 0.4s ease-in-out, border 0.4s ease-in-out',
       }}
     >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        sx={{ maxWidth: '1200px', mx: 'auto', px: 2 }}
+      <Box
+        sx={{
+          mx: 'auto',
+          px: 4,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
-        {/* Nav Links Centered */}
-        <Stack direction="row" spacing={6} justifyContent="center" flex={1}>
+        {/* Left: Menu Items */}
+        <Stack direction="row" spacing={4}>
           {menuItems.map((item) => (
             <NavLink
               key={item.name}
@@ -49,11 +71,30 @@ const Navbar = () => {
           ))}
         </Stack>
 
-        {/* Social Links on Right */}
-        <Box sx={{ ml: 4 }}>
+        {/* Center: Logo */}
+        <NavLink to="/">
+          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ width: '200px', color: '#fff' }}>
+              <Box
+                component="img"
+                src={Logo}
+                alt="Logo"
+                sx={{
+                  mt: 2,
+                  width: '100%',
+                  height: 'auto',
+                  filter: 'invert(1)',
+                }}
+              />
+            </Box>
+          </Box>
+        </NavLink>
+
+        {/* Right: Social Links */}
+        <Box>
           <SocialLinks />
         </Box>
-      </Stack>
+      </Box>
     </Box>
   );
 };

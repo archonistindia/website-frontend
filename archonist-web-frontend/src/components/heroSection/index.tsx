@@ -5,22 +5,20 @@ const HeroSection = () => {
   return (
     <Box
       sx={{
-        width: '100vw',
-        height: '100vh',
-        overflow: 'hidden',
+        width: '100%',
+        height: {
+          xs: '400px',   // mobile
+          sm: '500px',   // tablet
+          md: '800px',   // desktop
+          lg: '1200px',  // large screens
+          // xl: '1px',  // extra large
+        },
+        backgroundImage: `url(${HeroBanner})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
-    >
-      <Box
-        component="img"
-        src={HeroBanner}
-        alt="Hero Banner"
-        sx={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
-      />
-    </Box>
+    />
   );
 };
 
