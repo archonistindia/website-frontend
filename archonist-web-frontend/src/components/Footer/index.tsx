@@ -15,7 +15,6 @@ import {
   Twitter,
   Instagram,
   YouTube,
-  LocationOn,
   Email,
   Phone,
 } from '@mui/icons-material';
@@ -88,7 +87,6 @@ const LogoImage = styled('img')({
                     },
 });
 
-
 const Footer = () => {
   const theme = useTheme();
 
@@ -97,7 +95,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Band Info Section */}
-          <Grid >
+          <Grid>
             <Box sx={{ mb: 2 }}>
               <LogoImage 
                 src={Logo} 
@@ -156,25 +154,17 @@ const Footer = () => {
               <li>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Email fontSize="small" sx={{ color: theme.palette.error.main }} />
-                  <StyledLink href="mailto:contact@archonist.com">
-                    contact@archonist.com
+                  <StyledLink href="mailto:archonistindia@gmail.com">
+                    archonistindia@gmail.com
                   </StyledLink>
                 </Box>
               </li>
               <li>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Phone fontSize="small" sx={{ color: theme.palette.error.main }} />
-                  <StyledLink href="tel:+1234567890">
-                    +1 (234) 567-890
+                  <StyledLink href="tel:+918447008604">
+                    +91 844-700-8604
                   </StyledLink>
-                </Box>
-              </li>
-              <li>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <LocationOn fontSize="small" sx={{ color: theme.palette.error.main }} />
-                  <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
-                    123 Metal Street, Rock City
-                  </Typography>
                 </Box>
               </li>
             </StyledList>

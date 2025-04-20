@@ -65,12 +65,17 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
 
-  const isHome = location.pathname === '/' && (!location.hash || location.hash === '#home');
+  const isMenuItemActive = (path: string) => {
+    if (path.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === path.substring(1);
+    }
+    return location.pathname === path;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setNavbarSolid(window.scrollY > 10);
-};
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -94,12 +99,7 @@ const Navbar = () => {
       >
         <Box
           onClick={() => {
-            if (location.pathname === '/#home') {
-              const el = document.getElementById('home');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            } else {
-              window.location.href = '/#home';
-            }
+            window.location.href = '/';
           }}
           sx={{ 
             cursor: 'pointer', 
@@ -124,9 +124,7 @@ const Navbar = () => {
             <StyledNavLink
               key={item.name}
               to={item.path}
-              className={({ isActive }) => 
-                (!isHome && isActive) ? 'active' : ''
-              }
+              className={isMenuItemActive(item.path) ? 'active' : ''}
             >
               {item.name}
             </StyledNavLink>
@@ -173,6 +171,7 @@ const Navbar = () => {
                 component={NavLink}
                 to={item.path}
                 onClick={() => setDrawerOpen(false)}
+                className={isMenuItemActive(item.path) ? 'active' : ''}
                 sx={{
                   '&:hover': {
                     backgroundColor: theme.palette.action.hover,
