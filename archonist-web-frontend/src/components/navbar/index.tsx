@@ -6,6 +6,8 @@ import {
   List,
   ListItem,
   ListItemText,
+  styled,
+  useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -21,34 +23,64 @@ const menuItems = [
   { name: 'Shop', path: '/shop' },
 ];
 
+const StyledNavbar = styled('nav')(({ theme }) => ({
+        width: '100vw',
+        position: 'fixed',
+        top: 0,
+        zIndex: 999,
+  padding: theme.spacing(2, 0),
+        transition: 'background-color 0.4s ease-in-out, border 0.4s ease-in-out',
+}));
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+                  textDecoration: 'none',
+  color: theme.palette.primary.main,
+  fontWeight: 700,
+                  textTransform: 'uppercase',
+  fontFamily: theme.typography.fontFamily,
+                  transition: 'color 0.2s ease-in-out',
+                  fontSize: '14px',
+                  letterSpacing: '1px',
+  '&:hover': {
+    color: theme.palette.error.main,
+                    },
+  '&.active': {
+    color: theme.palette.secondary.main,
+  },
+}));
+
+const LogoImage = styled('img')(({}) => ({
+  width: '100%',
+  height: 'auto',
+  filter: 'invert(1)',
+  transition: 'filter 0.3s ease',
+  '&:hover': {
+    filter: 'invert(1) drop-shadow(0 0 4px rgba(255, 0, 0, 0.5))',
+  },
+}));
+
 const Navbar = () => {
+  const theme = useTheme();
   const [navbarSolid, setNavbarSolid] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
 
-  const isHome =
-    location.pathname === '/' &&
-    (!location.hash || location.hash === '#home');
+  const isHome = location.pathname === '/' && (!location.hash || location.hash === '#home');
 
   useEffect(() => {
     const handleScroll = () => {
       setNavbarSolid(window.scrollY > 10);
-    };
+};
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <Box
-      component="nav"
+    <StyledNavbar
       sx={{
-        width: '100vw',
-        position: 'fixed',
-        top: 0,
-        zIndex: 999,
-        py: 2,
-        backgroundColor: navbarSolid ? '#2e3131' : 'transparent',
-        transition: 'background-color 0.4s ease-in-out, border 0.4s ease-in-out',
+        backgroundColor: navbarSolid 
+          ? theme.palette.background.paper 
+          : 'transparent',
       }}
     >
       <Box
@@ -60,32 +92,26 @@ const Navbar = () => {
           justifyContent: 'space-between',
         }}
       >
-        {/* Logo */}
         <Box
           onClick={() => {
             if (location.pathname === '/#home') {
               const el = document.getElementById('home');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             } else {
-              window.location.href = '/#home'; // for other pages
+              window.location.href = '/#home';
             }
           }}
-          sx={{ cursor: 'pointer', width: { xs: '120px', sm: '200px' } }}
+          sx={{ 
+            cursor: 'pointer', 
+            width: { 
+              xs: '120px', 
+              sm: '200px' 
+            } 
+          }}
         >
-          <Box
-            component="img"
-            src={Logo}
-            alt="Logo"
-            sx={{
-              width: '100%',
-              height: 'auto',
-              filter: 'invert(1)',
-            }}
-          />
+          <LogoImage src={Logo} alt="Logo" />
         </Box>
 
-
-        {/* Desktop Nav */}
         <Stack
           direction="row"
           spacing={4}
@@ -95,36 +121,32 @@ const Navbar = () => {
           }}
         >
           {menuItems.map((item) => (
-            <NavLink
+            <StyledNavLink
               key={item.name}
               to={item.path}
-              style={({ isActive }) => {
-                const active = !isHome && isActive;
-                return {
-                  textDecoration: 'none',
-                  color: active ? '#888' : '#fff',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                  fontFamily: 'sans-serif',
-                  transition: 'color 0.2s ease-in-out',
-                  fontSize: '14px',
-                  letterSpacing: '1px',
-                };
-              }}
+              className={({ isActive }) => 
+                (!isHome && isActive) ? 'active' : ''
+              }
             >
               {item.name}
-            </NavLink>
+            </StyledNavLink>
           ))}
         </Stack>
 
-        {/* Right: Social / Mobile */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <SocialLinks />
           </Box>
 
           <IconButton
-            sx={{ display: { xs: 'block', md: 'none' }, color: 'white', ml: 1 }}
+            sx={{ 
+              display: { xs: 'block', md: 'none' }, 
+              color: theme.palette.primary.main,
+              ml: 1,
+              '&:hover': {
+                color: theme.palette.error.main,
+              },
+            }}
             onClick={() => setDrawerOpen(true)}
           >
             <MenuIcon />
@@ -132,20 +154,18 @@ const Navbar = () => {
         </Box>
       </Box>
 
-      {/* Mobile Drawer */}
       <Drawer
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-      >
-        <Box
-          sx={{
+        PaperProps={{
+          sx: {
+            backgroundColor: theme.palette.background.paper,
             width: 250,
-            backgroundColor: '#1f1f1f',
-            height: '100%',
-            p: 2,
-          }}
-        >
+          },
+        }}
+      >
+        <Box sx={{ p: 2, height: '100%' }}>
           <List>
             {menuItems.map((item) => (
               <ListItem
@@ -153,16 +173,24 @@ const Navbar = () => {
                 component={NavLink}
                 to={item.path}
                 onClick={() => setDrawerOpen(false)}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: theme.palette.action.hover,
+                  },
+                }}
               >
                 <ListItemText
                   primary={item.name}
                   primaryTypographyProps={{
                     sx: {
-                      color: 'white',
+                      color: theme.palette.primary.main,
                       textTransform: 'uppercase',
-                      fontWeight: 'bold',
+                      fontWeight: 700,
                       fontSize: '14px',
                       letterSpacing: '1px',
+                      '&:hover': {
+                        color: theme.palette.error.main,
+                      },
                     },
                   }}
                 />
@@ -171,7 +199,7 @@ const Navbar = () => {
           </List>
         </Box>
       </Drawer>
-    </Box>
+    </StyledNavbar>
   );
 };
 
