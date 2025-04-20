@@ -1,13 +1,21 @@
-import { Box, Stack, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import {
+  Box,
+  Stack,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SocialLinks from '../socialLinks';
 import Logo from '../../assets/logo.svg';
 
 const menuItems = [
   { name: 'About', path: '/about' },
-  { name: 'Discography', path: '/discography' },
+  { name: 'Discography', path: '/#discography' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'News', path: '/news' },
   { name: 'Shop', path: '/shop' },
@@ -16,6 +24,11 @@ const menuItems = [
 const Navbar = () => {
   const [navbarSolid, setNavbarSolid] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
+
+  const isHome =
+    location.pathname === '/' &&
+    (!location.hash || location.hash === '#home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,23 +60,32 @@ const Navbar = () => {
           justifyContent: 'space-between',
         }}
       >
-        {/* Left: Logo */}
-        <NavLink to="/">
-          <Box sx={{ width: { xs: '120px', sm: '200px' } }}>
-            <Box
-              component="img"
-              src={Logo}
-              alt="Logo"
-              sx={{
-                width: '100%',
-                height: 'auto',
-                filter: 'invert(1)',
-              }}
-            />
-          </Box>
-        </NavLink>
+        {/* Logo */}
+        <Box
+          onClick={() => {
+            if (location.pathname === '/#home') {
+              const el = document.getElementById('home');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = '/#home'; // for other pages
+            }
+          }}
+          sx={{ cursor: 'pointer', width: { xs: '120px', sm: '200px' } }}
+        >
+          <Box
+            component="img"
+            src={Logo}
+            alt="Logo"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              filter: 'invert(1)',
+            }}
+          />
+        </Box>
 
-        {/* Desktop Menu */}
+
+        {/* Desktop Nav */}
         <Stack
           direction="row"
           spacing={4}
@@ -76,29 +98,31 @@ const Navbar = () => {
             <NavLink
               key={item.name}
               to={item.path}
-              style={({ isActive }) => ({
-                textDecoration: 'none',
-                color: isActive ? '#888' : '#fff',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                fontFamily: 'sans-serif',
-                transition: 'color 0.2s ease-in-out',
-                fontSize: '14px',
-                letterSpacing: '1px',
-              })}
+              style={({ isActive }) => {
+                const active = !isHome && isActive;
+                return {
+                  textDecoration: 'none',
+                  color: active ? '#888' : '#fff',
+                  fontWeight: 'bold',
+                  textTransform: 'uppercase',
+                  fontFamily: 'sans-serif',
+                  transition: 'color 0.2s ease-in-out',
+                  fontSize: '14px',
+                  letterSpacing: '1px',
+                };
+              }}
             >
               {item.name}
             </NavLink>
           ))}
         </Stack>
 
-        {/* Right: Social Links / Mobile Menu */}
+        {/* Right: Social / Mobile */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <SocialLinks />
           </Box>
 
-          {/* Mobile Menu Button */}
           <IconButton
             sx={{ display: { xs: 'block', md: 'none' }, color: 'white', ml: 1 }}
             onClick={() => setDrawerOpen(true)}
@@ -109,13 +133,23 @@ const Navbar = () => {
       </Box>
 
       {/* Mobile Drawer */}
-      <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <Box sx={{ width: 250, backgroundColor: '#1f1f1f', height: '100%', p: 2 }}>
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      >
+        <Box
+          sx={{
+            width: 250,
+            backgroundColor: '#1f1f1f',
+            height: '100%',
+            p: 2,
+          }}
+        >
           <List>
             {menuItems.map((item) => (
               <ListItem
                 key={item.name}
-                // button
                 component={NavLink}
                 to={item.path}
                 onClick={() => setDrawerOpen(false)}
