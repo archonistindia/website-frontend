@@ -9,6 +9,7 @@ import About from './pages/about';
 import ScrollToAnchor from './components/scrollToAnchor';
 import Footer from './components/Footer';
 import News from './pages/news';
+import './assets/fonts/fonts.css';
 
 const App: React.FC = () => {
   return (

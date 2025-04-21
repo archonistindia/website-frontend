@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Antone';
+  src: url('./Antone.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Broken';
+  src: url('./Broken-Detroit.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Slumber';
+  src: url('./Slumber.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

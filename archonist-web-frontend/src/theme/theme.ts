@@ -9,7 +9,7 @@ const COLORS = {
     hover: 'rgb(128, 0, 0)',
   },
   dark: {
-    main: 'rgb(0, 0, 0)',      // Darker main background
+    main: '#080909',      // Darker main background
     paper: 'rgb(24, 25, 28)',     // Darker paper background
     light: 'rgb(28, 29, 32)',     // Slightly lighter for hover states
     overlay: 'rgba(18, 19, 21, 0.95)', // For overlays
@@ -20,12 +20,12 @@ export const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#FFFFFF',
+      main: 'rgb(255, 255, 255)',
       light: '#FFFFFF',
       dark: '#CCCCCC',
     },
     secondary: {
-      main: '#9B9B81',
+      main: 'rgb(135, 139, 116)',
       light: '#ABA891',
       dark: '#8B8B71',
     },
@@ -39,7 +39,7 @@ export const theme = createTheme({
       paper: COLORS.dark.paper,
     },
     text: {
-      primary: '#FFFFFF',
+      primary: 'rgb(216, 216, 216)',
       secondary: '#9B9B81',
     },
     action: {
@@ -49,16 +49,16 @@ export const theme = createTheme({
     },
     divider: 'rgba(155, 155, 129, 0.12)',
   },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  typography: { 
+    fontFamily: '"Slumber","Antone", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontSize: '2.5rem',
+      fontSize: '6rem',
       fontWeight: 700,
-      letterSpacing: '0.2em',
+      // letterSpacing: '0.2em',
       textTransform: 'uppercase',
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: '6rem',
       fontWeight: 700,
       letterSpacing: '0.1em',
       textTransform: 'uppercase',
@@ -69,33 +69,39 @@ export const theme = createTheme({
       letterSpacing: '0.08em',
     },
     h4: {
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       fontWeight: 600,
       letterSpacing: '0.05em',
     },
     h5: {
-      fontSize: '1.25rem',
+      fontSize: '2rem',
       fontWeight: 500,
       letterSpacing: '0.05em',
+
     },
     h6: {
-      fontSize: '1rem',
+      fontSize: '2rem',
       fontWeight: 500,
       letterSpacing: '0.04em',
     },
     body1: {
       fontSize: '1rem',
       letterSpacing: '0.03em',
+      fontFamily: 'Antone',
+
     },
     body2: {
       fontSize: '0.875rem',
       letterSpacing: '0.02em',
       color: '#9B9B81',
+      fontFamily: 'Antone',
+
     },
     button: {
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
       fontWeight: 500,
+      fontFamily: 'Antone',
     },
   },
   components: {

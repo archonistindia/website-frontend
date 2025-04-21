@@ -39,7 +39,7 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
                   textTransform: 'uppercase',
   fontFamily: theme.typography.fontFamily,
                   transition: 'color 0.2s ease-in-out',
-                  fontSize: '14px',
+                  fontSize: '20px',
                   letterSpacing: '1px',
   '&:hover': {
     color: theme.palette.error.main,

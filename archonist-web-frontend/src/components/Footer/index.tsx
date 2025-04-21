@@ -27,7 +27,6 @@ const StyledFooter = styled('footer')(({ theme }) => ({
   paddingBottom: theme.spacing(4),
   position: 'relative',
   '&::before': {
-    content: '""',
     position: 'absolute',
     top: 0,
     left: 0,
