@@ -7,18 +7,34 @@ const HeroSection = () => {
       sx={{
         width: '100%',
         height: {
-          xs: '400px',   // mobile
-          sm: '500px',   // tablet
-          md: '800px',   // desktop
-          lg: '1200px',  // large screens
-          // xl: '1px',  // extra large
+          xs: '1080px', // Default height for smaller screens
+          // At 1920px width and above, adjust height to show full image
+          [`@media (min-width: 1920px)`]: {
+            height: 'auto',
+            aspectRatio: '1920/1080', // Adjust this ratio to match your image's actual dimensions
+          }
         },
-        backgroundImage: `url(${HeroBanner})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        position: 'relative',
+        overflow: 'hidden',
       }}
-    />
+    >
+      <Box
+        component="img"
+        src={HeroBanner}
+        alt="Hero Banner"
+        sx={{
+          height: '100%',
+          width: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          [`@media (min-width: 1920px)`]: {
+            objectFit: 'contain', // Shows full image without cropping
+            height: 'auto',
+            width: '100%',
+          }
+        }}
+      />
+    </Box>
   );
 };
 

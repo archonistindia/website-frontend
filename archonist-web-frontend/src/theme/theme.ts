@@ -9,7 +9,7 @@ const COLORS = {
     hover: 'rgb(128, 0, 0)',
   },
   dark: {
-    main: '#080909',      // Darker main background
+    main: '#050505',      // Darker main background
     paper: 'rgb(24, 25, 28)',     // Darker paper background
     light: 'rgb(28, 29, 32)',     // Slightly lighter for hover states
     overlay: 'rgba(18, 19, 21, 0.95)', // For overlays

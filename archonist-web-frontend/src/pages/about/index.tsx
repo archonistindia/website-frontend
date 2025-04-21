@@ -1,6 +1,6 @@
-import { Box, Container, Typography, Divider, Stack} from '@mui/material';
+import { Box, Container, Typography, Divider, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid';
-
+import BandImage from '../../assets/band.png';
 
 const About = () => {
   return (
@@ -15,27 +15,52 @@ const About = () => {
         <Box sx={{
             padding: '100px 0px 50px 0px'
         }}>
-
             <Typography variant="h2" fontWeight="bold" gutterBottom align="center">
             About Archonist
             </Typography>
         </Box>
-      <Container maxWidth="lg">
-        
 
+      <Container maxWidth="lg">
         <Typography variant="h6" color="gray" align="center" gutterBottom>
           Dynamic Hard Rock from Jaipur & New Delhi, India
         </Typography>
 
-        <Divider sx={{ my: 4, bgcolor: 'gray' }} />
+        <Box
+          sx={{
+            width: '100%',
+            height: 'auto',
+            position: 'relative',
+            my: 4,
+            overflow: 'hidden',
+            borderRadius: '8px',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)',
+          }}
+        >
+          <Box
+            component="img"
+            src={BandImage}
+            alt="Archonist Band"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              transition: 'transform 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.02)',
+              },
+            }}
+          />
+        </Box>
 
+        <Divider sx={{ my: 4, bgcolor: 'gray' }} />
         <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
           <strong>Archonist</strong> is a dynamic Hard Rock band born out of the grit of Jaipur and New Delhi. With an
           unrelenting drive to shake the system and elevate consciousness, Archonist crafts a sonic experience that's
           both explosive and introspective. Combining heavy riffs, soaring vocals, and thought-provoking lyrics, our music
           doesn't just entertain—it awakens.
-        </Typography>
-
+          </Typography>
         <Box mt={6}>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Musical Style & Sound
@@ -44,7 +69,7 @@ const About = () => {
             Our sound is an electrifying blend of raw energy, melodic hooks, and intricate guitar work. Inspired by
             classic rock, heavy metal, and alternative rock, we create tracks that balance aggression with emotion—
             offering both headbanging riffs and soul-hitting melodies.
-          </Typography>
+                    </Typography>
         </Box>
 
         <Box mt={6}>
@@ -56,15 +81,14 @@ const About = () => {
             consumerism. Each song is a narrative—raising questions, breaking silence, and empowering listeners to
             question the system and ignite change. Our message is clear: face reality, rise above, and reclaim your mind.
           </Typography>
-        </Box>
+    </Box>
 
         <Box mt={6}>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Meet the Band
           </Typography>
           <Grid container spacing={2} mt={2}>
-            {[
-              ['Aken (Angoam)', 'Vocals'],
+            {[['Aken (Angoam)', 'Vocals'],
               ['Gunjan', 'Guitar & Production'],
               ['Kalpesh', 'Drums'],
               ['Dushyant', 'Guitar'],
